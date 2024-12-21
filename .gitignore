@@ -1,3 +1,11 @@
-venv/ 
-__pycache__/ 
-*.pyc 
+# Virtual environment
+venv/
+
+# PyInstaller output
+build/
+dist/
+*.spec
+
+# Compiled Python files
+__pycache__/
+*.pyc
