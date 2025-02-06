@@ -1,11 +1,17 @@
-# Virtual environment
-venv/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# PyInstaller output
+# Virtual Environments
+venv/
+.env/
+
+# OS files
+.DS_Store
+
+# Build artifacts
 build/
 dist/
 *.spec
-
-# Compiled Python files
-__pycache__/
-*.pyc
