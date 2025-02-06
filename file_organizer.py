@@ -1,48 +1,49 @@
-import os
+#!/usr/bin/env python3
+
+from duplicate_detector import find_duplicates
+from file_sorter_by_type import organize_by_type
+from file_sorter_by_date import organize_by_date
+from file_encryptor import encrypt_file, decrypt_file
 
 def menu():
     while True:
-        print("\nFile Organizer - Main Menu")
-        print("1. Sort Files by Type")
-        print("2. Sort Files by Date")
-        print("3. Detect Duplicate Files")
-        print("4. Encrypt Files")
-        print("5. Decrypt Files")
+        print("\nFile Organizer Menu:")
+        print("1. Organize files by type")
+        print("2. Organize files by date")
+        print("3. Detect duplicate files")
+        print("4. Encrypt a file")
+        print("5. Decrypt a file")
         print("6. Exit")
 
-        choice = input("Enter your choice: ").strip()
+        choice = input("Enter your choice (1-6): ").strip()
 
         if choice == "1":
-            from file_sorter_by_type import organize_by_type
-            directory = input("Enter the directory to organize: ").strip()
-            simulate = input("Enable simulation mode? (yes/no): ").strip().lower() == "yes"
-            organize_by_type(directory, simulate=simulate)
+            directory = input("Enter the directory path: ").strip()
+            simulate = input("Simulate changes? (yes/no): ").lower() == "yes"
+            organize_by_type(directory, simulate)
 
         elif choice == "2":
-            from file_sorter_by_date import organize_by_date
-            directory = input("Enter the directory to organize: ").strip()
-            date_type = input("Organize by (creation/modification): ").strip().lower()
-            simulate = input("Enable simulation mode? (yes/no): ").strip().lower() == "yes"
-            organize_by_date(directory, date_type, simulate=simulate)
+            directory = input("Enter the directory path: ").strip()
+            date_type = input("Sort by (creation/modification): ").strip().lower()
+            simulate = input("Simulate changes? (yes/no): ").lower() == "yes"
+            organize_by_date(directory, date_type, simulate)
 
         elif choice == "3":
-            from duplicate_detector_with_loop import main as duplicate_detector
-            duplicate_detector()
+            directory = input("Enter the directory path: ").strip()
+            find_duplicates(directory)
 
         elif choice == "4":
-            from file_encryptor import encrypt_file
-            file_path = input("Enter the file path to encrypt: ").strip()
-            password = input("Enter the password: ").strip()
+            file_path = input("Enter file path to encrypt: ").strip()
+            password = input("Enter password: ").strip()
             encrypt_file(file_path, password)
 
         elif choice == "5":
-            from file_encryptor import decrypt_file
-            file_path = input("Enter the file path to decrypt: ").strip()
-            password = input("Enter the password: ").strip()
+            file_path = input("Enter file path to decrypt: ").strip()
+            password = input("Enter password: ").strip()
             decrypt_file(file_path, password)
 
         elif choice == "6":
-            print("Exiting the program. Goodbye!")
+            print("Exiting File Organizer. Goodbye!")
             break
 
         else:
